@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HEEGER Design — Premium Web Design Studio</title>
+<meta name="description" content="HEEGER Design is a high-end web design studio crafting futuristic, premium digital experiences.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Enhanced contrast silver colors */
+  --silver-100:#ffffff;--silver-200:#f0f0f5;--silver-300:#d8d8e2;--silver-400:#b0b0bc;--silver-500:#8a8a96;
+  /* Vibrant baby blue for strong highlights */
+  --baby-blue:#5cbbf6;--bb-light:#b8e2f8;--bb-dark:#3a9cd9;--bb-glow:rgba(92, 187, 246, 0.6);--bb-dim:rgba(92, 187, 246, 0.15);
+  /* Much darker text for perfect readability on silver */
+  --text-dark:#0b0b1a;--text-mid:#1f1f33;--text-light:#4a4a60;
+  --glass:rgba(255,255,255,0.7);--glass-border:rgba(255,255,255,0.9);
+  --font-head:'Space Grotesk', system-ui, sans-serif;
+  --font-body:'Space Grotesk', system-ui, sans-serif;
+  --ease:cubic-bezier(0.16, 1, 0.3, 1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--baby-blue) var(--silver-200)}
+body{font-family:var(--font-body);color:var(--text-mid);overflow-x:hidden;line-height:1.7;background:var(--silver-200);font-size:1.1rem;}
+::selection{background:var(--baby-blue);color:#fff}
+h1,h2,h3,h4{font-family:var(--font-head);text-transform:uppercase;letter-spacing:0.02em;font-weight:700;}
+
+/* ===== LIQUID METAL CANVAS ===== */
+#liquidCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.85;}
+
+/* All content above canvas */
+.page-content{position:relative;z-index:1}
+
+/* ===== CHROME TEXT (High Contrast) ===== */
+.chrome-heading{
+  background:linear-gradient(180deg,#111 0%,#333 25%,#888 45%,#000 50%,#555 55%,#aaa 75%,#222 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 2px 5px rgba(255,255,255,0.8));
+}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:1.5rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.6s var(--ease)}
+.nav.scrolled{background:rgba(240,240,245,0.92);backdrop-filter:blur(25px);border-bottom:1px solid rgba(255,255,255,0.8);box-shadow:0 10px 30px rgba(0,0,0,0.08);padding:1rem 4rem;}
+.nav-icon{height:45px;width:auto;mix-blend-mode:multiply;transition:transform 0.4s var(--ease);}
+.nav-icon:hover{transform:scale(1.05);}
+.nav-links{display:flex;gap:3rem;list-style:none}
+.nav-links a{color:var(--text-mid);text-decoration:none;font-size:0.95rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;font-family:var(--font-head);position:relative;transition:color 0.3s}
+.nav-links a::after{content:'';position:absolute;bottom:-8px;left:0;width:0;height:3px;background:var(--baby-blue);box-shadow:0 0 12px var(--bb-glow);transition:width 0.5s var(--ease)}
+.nav-links a:hover{color:var(--baby-blue)}
+.nav-links a:hover::after{width:100%}
+.hamburger{display:none;flex-direction:column;gap:6px;cursor:pointer;z-index:101}
+.hamburger span{width:32px;height:3px;background:var(--text-dark);transition:all 0.4s var(--ease)}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding-top:2rem;}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:900px;padding:0 2rem;display:flex;flex-direction:column;align-items:center;}
+
+.hero-main-logo{width:100%;max-width:650px;height:auto;mix-blend-mode:multiply;margin-bottom:3rem;}
+
+.hero-cta{display:inline-flex;align-items:center;gap:1rem;padding:1.2rem 3.5rem;font-family:var(--font-head);font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:50px;cursor:pointer;position:relative;overflow:hidden;transition:all 0.4s var(--ease);background:transparent;color:var(--text-dark);font-weight:700;border:2px solid var(--text-dark);}
+.hero-cta:hover{transform:translateY(-3px);background:var(--baby-blue);border-color:var(--baby-blue);color:#fff;box-shadow:0 15px 30px rgba(92, 187, 246, 0.4);}
+
+.scroll-ind{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.scroll-ind span{font-family:var(--font-head);font-size:0.75rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-mid);}
+.scroll-line{width:2px;height:60px;background:linear-gradient(to bottom,var(--baby-blue),transparent);animation:pulseScroll 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;}
+@keyframes pulseScroll{0%{transform:scaleY(0);transform-origin:top;opacity:0}50%{transform:scaleY(1);transform-origin:top;opacity:1}50.1%{transform:scaleY(1);transform-origin:bottom;opacity:1}100%{transform:scaleY(0);transform-origin:bottom;opacity:0}}
+
+/* ===== SECTION COMMON ===== */
+section{padding:10rem 2rem;position:relative}
+.section-tag{display:inline-block;font-family:var(--font-head);font-size:0.8rem;font-weight:900;letter-spacing:0.3em;text-transform:uppercase;color:var(--baby-blue);margin-bottom:1.5rem;padding:0.6rem 2rem;border:2px solid var(--baby-blue);border-radius:50px;background:var(--bb-dim);box-shadow:0 0 20px var(--bb-dim), inset 0 0 10px var(--bb-dim);}
+.section-heading{font-size:clamp(2.5rem, 5vw, 4.5rem);margin-bottom:1.5rem;color:var(--text-dark);line-height:1.1;}
+.section-sub{max-width:700px;color:var(--text-mid);font-weight:500;font-size:1.15rem;line-height:1.8;margin-bottom:4rem;}
+.container{max-width:1400px;margin:0 auto;position:relative;z-index:2;}
+
+/* ===== ABOUT ===== */
+.about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:8rem;align-items:center}
+.about-text p{color:var(--text-mid);font-weight:400;font-size:1.15rem;line-height:1.9;margin-bottom:2rem;text-shadow:0 1px 1px rgba(255,255,255,0.7);}
+
+.about-visual{position:relative;display:flex;justify-content:center;align-items:center;min-height:600px}
+.about-card{width:100%;max-width:450px;height:550px;border-radius:30px;position:relative;overflow:hidden;padding:3.5rem;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(230,230,240,0.6) 100%);border:2px solid rgba(255,255,255,1);backdrop-filter:blur(30px);box-shadow:0 30px 80px rgba(0,0,0,0.15),inset 0 2px 15px rgba(255,255,255,1);transition:transform 0.5s var(--ease);}
+.about-card:hover{transform:translateY(-15px);}
+.about-card::after{content:'';position:absolute;top:-50px;right:-50px;width:300px;height:300px;border:2px solid var(--bb-glow);border-radius:50%;animation:orb 20s linear infinite;box-shadow:0 0 30px var(--bb-dim);}
+.about-card .chrome-sphere{position:absolute;top:50px;left:50px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff 0%,#d8d8e2 30%,#8a8a96 60%,#000 100%);box-shadow:0 15px 40px rgba(0,0,0,0.3),inset 0 -5px 15px rgba(0,0,0,0.5);}
+.about-card h3{font-size:1.6rem;letter-spacing:0.1em;color:var(--text-dark);position:relative;z-index:1;margin-bottom:0.5rem;font-weight:900;}
+.about-card>p{font-size:1rem;color:var(--text-mid);font-weight:500;position:relative;z-index:1;}
+
+/* ===== MASSIVE FULL-WIDTH STATS BAND ===== */
+.stats-band{padding:6rem 2rem;background:linear-gradient(90deg, var(--silver-300), var(--silver-100), var(--silver-300));border-top:2px solid #fff;border-bottom:2px solid #fff;box-shadow:0 20px 50px rgba(0,0,0,0.05);position:relative;z-index:2;margin:5rem 0;}
+.stats-container{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4rem;}
+.stat-block{text-align:center;flex:1;min-width:250px;}
+.stat-val{font-family:var(--font-head);font-size:clamp(4.5rem, 8vw, 7.5rem);display:block;color:var(--baby-blue);font-weight:900;line-height:1;text-shadow:0 10px 30px var(--bb-glow), 0 2px 5px rgba(0,0,0,0.2);margin-bottom:1rem;}
+.stat-lbl{font-size:1.1rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-dark);font-family:var(--font-head);}
+
+/* ===== SERVICES ===== */
+.services-head{text-align:center;margin-bottom:6rem;display:flex;flex-direction:column;align-items:center;}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:3rem}
+.svc-card{border-radius:30px;padding:4rem 3rem;position:relative;overflow:hidden;cursor:default;transition:all 0.5s var(--ease);background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(240,240,245,0.7));border:2px solid rgba(255,255,255,1);backdrop-filter:blur(20px);box-shadow:0 15px 40px rgba(0,0,0,0.08),inset 0 2px 10px rgba(255,255,255,0.8);}
+.svc-card:hover{transform:translateY(-15px) scale(1.02);border-color:var(--baby-blue);box-shadow:0 30px 60px rgba(0,0,0,0.12),0 0 40px var(--bb-glow),inset 0 2px 10px rgba(255,255,255,1);}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--baby-blue);box-shadow:0 0 20px var(--baby-blue);opacity:0;transition:opacity 0.4s;transform:scaleX(0);transform-origin:left;}
+.svc-card:hover::before{opacity:1;transform:scaleX(1);}
+
+.svc-icon{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;margin-bottom:2.5rem;font-size:2.5rem;font-weight:900;transition:all 0.5s var(--ease);background:linear-gradient(135deg, var(--silver-100), var(--silver-300));border:2px solid rgba(255,255,255,1);color:var(--baby-blue);box-shadow:0 10px 20px rgba(0,0,0,0.1);}
+.svc-card:hover .svc-icon{background:var(--baby-blue);color:#fff;box-shadow:0 15px 30px var(--bb-glow);transform:scale(1.1) rotate(-5deg);}
+.svc-card h3{font-size:1.5rem;letter-spacing:0.1em;margin-bottom:1.2rem;color:var(--text-dark);font-weight:900;}
+.svc-card p{font-size:1.05rem;color:var(--text-mid);font-weight:500;line-height:1.8;}
+
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:6rem;align-items:start}
+.contact-info p{color:var(--text-mid);font-weight:500;font-size:1.2rem;line-height:1.9;margin-bottom:3.5rem;}
+.contact-row{display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem;color:var(--text-dark);font-weight:700;font-size:1.2rem;}
+.contact-row .ci{width:60px;height:60px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;background:linear-gradient(135deg, #fff, var(--silver-200));border:2px solid #fff;color:var(--baby-blue);box-shadow:0 10px 20px rgba(0,0,0,0.08);}
+
+.contact-form{border-radius:30px;padding:4rem;backdrop-filter:blur(30px);background:linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(230,230,240,0.75) 100%);border:2px solid rgba(255,255,255,1);box-shadow:0 30px 80px rgba(0,0,0,0.15),inset 0 2px 20px rgba(255,255,255,0.8);}
+.fg{position:relative;margin-bottom:2.5rem}
+.fg input,.fg textarea{width:100%;background:rgba(255,255,255,0.7);border:2px solid rgba(255,255,255,1);border-radius:15px;padding:1.4rem 1.5rem;color:var(--text-dark);font-family:var(--font-body);font-size:1.1rem;font-weight:600;outline:none;transition:all 0.4s var(--ease);box-shadow:inset 0 2px 5px rgba(0,0,0,0.05);}
+.fg textarea{resize:vertical;min-height:160px}
+.fg input:focus,.fg textarea:focus{border-color:var(--baby-blue);background:#fff;box-shadow:0 0 30px var(--bb-dim), inset 0 2px 5px rgba(0,0,0,0.02);}
+.fg label{position:absolute;left:1.5rem;top:1.4rem;color:var(--text-light);font-size:1.1rem;font-weight:500;pointer-events:none;transition:all 0.4s var(--ease);}
+.fg input:focus~label,.fg input:not(:placeholder-shown)~label,
+.fg textarea:focus~label,.fg textarea:not(:placeholder-shown)~label{top:-1rem;left:1rem;font-size:0.85rem;font-weight:800;color:var(--baby-blue);background:var(--silver-100);padding:0 0.8rem;border-radius:5px;}
+
+.send-btn{width:100%;padding:1.5rem;font-family:var(--font-head);font-size:1.1rem;letter-spacing:0.2em;text-transform:uppercase;border:none;border-radius:15px;cursor:pointer;font-weight:900;transition:all 0.4s var(--ease);background:var(--text-dark);color:#fff;box-shadow:0 15px 30px rgba(0,0,0,0.2);}
+.send-btn:hover{transform:translateY(-5px);background:var(--baby-blue);box-shadow:0 20px 40px var(--bb-glow);color:#fff;}
+
+/* ===== FOOTER ===== */
+.footer{text-align:center;padding:5rem 2rem;background:var(--text-dark);position:relative;z-index:1;margin-top:5rem;}
+.footer-logo{font-family:var(--font-head);font-size:1.8rem;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem;color:#fff;font-weight:900;}
+.footer-logo span{color:var(--baby-blue);text-shadow:0 0 15px var(--bb-glow);}
+.footer p{font-size:0.95rem;color:var(--silver-400);font-weight:500;letter-spacing:0.1em;text-transform:uppercase;}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(60px) scale(0.98);transition:all 1s var(--ease)}
+.rv.left{transform:translateX(-60px) scale(0.98)}.rv.right{transform:translateX(60px) scale(0.98)}
+.rv.on{opacity:1;transform:translate(0) scale(1)}
+.rv.d1{transition-delay:0.1s}.rv.d2{transition-delay:0.2s}.rv.d3{transition-delay:0.3s}.rv.d4{transition-delay:0.4s}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1100px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:4rem}
+  .about-visual{order:-1}
+  .about-card{max-width:100%;}
+  .stats-container{gap:2rem;}
+  .stat-val{font-size:clamp(3.5rem, 10vw, 5.5rem);}
+}
+@media(max-width:900px){
+  .nav{padding:1.5rem 2rem}
+  .nav.scrolled{padding:1rem 2rem;}
+  .nav-links{display:none;position:fixed;inset:0;background:rgba(240,240,245,0.98);backdrop-filter:blur(30px);flex-direction:column;align-items:center;justify-content:center;gap:3rem}
+  .nav-links.open{display:flex}
+  .nav-links a{font-size:1.2rem;}
+  .hamburger{display:flex}
+  .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}
+  .hamburger.active span:nth-child(2){opacity:0}
+  .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}
+  .hero h1{font-size:clamp(3rem, 10vw, 4rem);}
+  section{padding:6rem 1.5rem;}
+  .stats-band{padding:4rem 1.5rem;}
+}
+@media(max-width:600px){
+  .contact-form{padding:2.5rem 1.5rem;}
+  .fg input,.fg textarea{padding:1.2rem 1rem;}
+  .svc-card{padding:3rem 2rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- LIQUID METAL BACKGROUND CANVAS -->
+<canvas id="liquidCanvas"></canvas>
+
+<!-- ALL PAGE CONTENT -->
+<div class="page-content">
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo-link"><img src="logo.jpg" alt="HEEGER Design" class="nav-icon"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="orbit orbit-1"><div class="orbit-dot"></div></div>
+  <div class="orbit orbit-2"><div class="orbit-dot"></div></div>
+  <div class="orbit orbit-3"></div>
+  <div class="hero-content">
+    <img src="logo.jpg" alt="HEEGER Design" class="hero-main-logo rv d1">
+    <div class="rv d2">
+      <a href="#contact" class="hero-cta">Start Project</a>
+    </div>
+  </div>
+  <div class="scroll-ind"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="section-tag rv">About Us</span>
+        <h2 class="section-heading rv d1">Where Vision Meets Absolute Precision</h2>
+        <p class="rv d2">At HEEGER Design, we believe that exceptional web design is not just about aesthetics — it is about engineering experiences that resonate, engage and dominate. Every pixel is placed with absolute purpose, every interaction crafted with intention.</p>
+        <p class="rv d3">Our methodology fuses cutting-edge WebGL technology with stark, minimalistic elegance, delivering digital flagship environments that stand firmly at the intersection of high art and profound engineering.</p>
+      </div>
+      <div class="about-visual rv right">
+        <div class="about-card">
+          <div class="chrome-sphere"></div>
+          <h3>Uncompromising Innovation</h3>
+          <p>Pushing the very boundaries of digital presence.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MASSIVE STATS BAND -->
+<section class="stats-band">
+  <div class="stats-container">
+    <div class="stat-block rv d1">
+      <span class="stat-val" data-count="8">0</span>
+      <span class="stat-lbl">Years Experience</span>
+    </div>
+    <div class="stat-block rv d2">
+      <span class="stat-val" data-count="120">0</span>
+      <span class="stat-lbl">Projects Delivered</span>
+    </div>
+    <div class="stat-block rv d3">
+      <span class="stat-val" data-count="95">0</span>
+      <span class="stat-lbl">Global Clients</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-head">
+      <span class="section-tag rv">Our Expertise</span>
+      <h2 class="section-heading rv d1">What We Engineer</h2>
+      <p class="section-sub rv d2">From visionary concept to flawless execution, we deliver end-to-end digital solutions scaled to elevate your brand above the noise.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card rv d1">
+        <div class="svc-icon">&#9674;</div>
+        <h3>Web Design</h3>
+        <p>Bespoke, visually commanding websites tailored strictly to your brand identity. Every layout is structured to captivate instantly and convert effortlessly.</p>
+      </div>
+      <div class="svc-card rv d2">
+        <div class="svc-icon">&#9706;</div>
+        <h3>UI / UX Design</h3>
+        <p>Intuitive interfaces and seamless, kinetic user journeys that transform interacting with your digital product into a premium experience.</p>
+      </div>
+      <div class="svc-card rv d3">
+        <div class="svc-icon">&#10022;</div>
+        <h3>Brand Identity</h3>
+        <p>Cohesive, bold visual identities that communicate your uncompromising values and sharply differentiate you from conventional competitors.</p>
+      </div>
+      <div class="svc-card rv d4">
+        <div class="svc-icon">&#8960;</div>
+        <h3>Development</h3>
+        <p>Clean, elite-tier performant code that brings radical designs to life with liquid-smooth animations and flawless, unshakeable functionality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="section-tag rv">Initiate Connection</span>
+        <h2 class="section-heading rv d1">Let's Build Something Extraordinary</h2>
+        <p class="rv d2">Ready to elevate your digital presence to the premium tier? We are prepared to hear about your vision and construct your future online environment.</p>
+        <div class="contact-row rv d3"><div class="ci">&#9993;</div><span>hello@heeger.design</span></div>
+        <div class="contact-row rv d4"><div class="ci">&#9742;</div><span>+49 123 456 7890</span></div>
+      </div>
+      <form class="contact-form rv right" onsubmit="event.preventDefault()">
+        <div class="fg"><input type="text" id="c-name" placeholder=" " required><label for="c-name">Your Identification (Name)</label></div>
+        <div class="fg"><input type="email" id="c-email" placeholder=" " required><label for="c-email">Signal Route (Email)</label></div>
+        <div class="fg"><input type="text" id="c-subj" placeholder=" "><label for="c-subj">Project Parameters (Subject)</label></div>
+        <div class="fg"><textarea id="c-msg" placeholder=" " required></textarea><label for="c-msg">Transmit Details (Message)</label></div>
+        <button type="submit" class="send-btn">Establish Connection</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">HEEGER <span>Design</span></div>
+  <p>&copy; 2026 HEEGER Design. All systems operational. All rights reserved.</p>
+</footer>
+
+</div><!-- /page-content -->
+
+<script>
+/* ===== LIQUID METAL WEBGL BACKGROUND ===== */
+(function(){
+  const canvas=document.getElementById('liquidCanvas');
+  const gl=canvas.getContext('webgl')||canvas.getContext('experimental-webgl');
+  if(!gl)return;
+
+  let W,H,mouse={x:0.5,y:0.5},scroll=0;
+
+  function resize(){
+    W=canvas.width=window.innerWidth;
+    H=canvas.height=window.innerHeight;
+    gl.viewport(0,0,W,H);
+  }
+  window.addEventListener('resize',resize);
+  resize();
+
+  window.addEventListener('mousemove',e=>{
+    mouse.x=e.clientX/W;
+    mouse.y=1.0-e.clientY/H;
+  });
+  window.addEventListener('scroll',()=>{
+    scroll=window.scrollY/(document.body.scrollHeight-H||1);
+  });
+
+  const vs=`attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}`;
+
+  const fs=`
+precision highp float;
+uniform float u_time;
+uniform vec2 u_res;
+uniform vec2 u_mouse;
+uniform float u_scroll;
+
+vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}
+vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}
+vec4 perm(vec4 x){return mod289(((x*34.0)+1.0)*x);}
+
+float noise(vec3 p){
+  vec3 a=floor(p);vec3 d=p-a;d=d*d*(3.0-2.0*d);
+  vec4 b=a.xxyy+vec4(0,1,0,1);
+  vec4 k1=perm(b.xyxy);vec4 k2=perm(k1.xyxy+b.zzww);
+  vec4 c=k2+a.zzzz;vec4 k3=perm(c);vec4 k4=perm(c+1.0);
+  vec4 o1=fract(k3*(1.0/41.0));vec4 o2=fract(k4*(1.0/41.0));
+  vec4 o3=o2*d.z+o1*(1.0-d.z);
+  vec2 o4=o3.yw*d.x+o3.xz*(1.0-d.x);
+  return o4.y*d.y+o4.x*(1.0-d.y);
+}
+
+float fbm(vec3 p){
+  float v=0.0,a=0.5;
+  for(int i=0;i<5;i++){v+=a*noise(p);p*=2.1;a*=0.48;}
+  return v;
+}
+
+void main(){
+  vec2 uv=gl_FragCoord.xy/u_res;
+  float aspect=u_res.x/u_res.y;
+  vec2 p=vec2(uv.x*aspect,uv.y);
+
+  float scrollOff=u_scroll*4.0;
+  vec2 mp=vec2(u_mouse.x*aspect,u_mouse.y);
+  float md=length(p-mp);
+  float mouseInfluence=smoothstep(0.5,0.0,md)*0.35;
+
+  float t=u_time*0.12;
+  vec3 q=vec3(p*1.8+vec2(0.0,scrollOff),t);
+
+  q.xy+=vec2(sin(md*6.0-t*2.0),cos(md*6.0-t*2.0))*mouseInfluence;
+
+  float n1=fbm(q);
+  float n2=fbm(q+vec3(n1*1.5,n1*1.2,t*0.5));
+  float n3=fbm(q+vec3(n2*1.3,n2*1.6,t*0.3+scrollOff*0.5));
+
+  float pattern=n3;
+
+  vec3 silver1=vec3(0.92,0.92,0.95); 
+  vec3 silver2=vec3(0.78,0.78,0.82); 
+  vec3 silver3=vec3(0.88,0.88,0.92); 
+  vec3 blue=vec3(0.36,0.73,0.96); /* deeper baby blue for liquid */
+
+  float metallic=smoothstep(0.3,0.7,pattern);
+  float highlight=smoothstep(0.55,0.65,pattern);
+  
+  vec3 col=mix(silver2,silver1,metallic);
+  col=mix(col,silver3,highlight*0.6);
+
+  float blueZone=smoothstep(0.42,0.52,n2)*smoothstep(0.62,0.52,n2);
+  col=mix(col,blue,0.15+blueZone*0.2);
+
+  col+=vec3(1.0)*(highlight*0.12);
+  col*=(0.88+pattern*0.15);
+
+  col=mix(col,blue,0.08*smoothstep(0.4,0.0,md));
+  col+=vec3(0.7,0.85,0.95)*0.04*smoothstep(0.2,0.0,md);
+  col=mix(vec3(0.85,0.85,0.88),col,0.92);
+
+  gl_FragColor=vec4(col,1.0);
+}
+`;
+
+  function createShader(type,src){
+    const s=gl.createShader(type);
+    gl.shaderSource(s,src);gl.compileShader(s);
+    return s;
+  }
+  const prog=gl.createProgram();
+  gl.attachShader(prog,createShader(gl.VERTEX_SHADER,vs));
+  gl.attachShader(prog,createShader(gl.FRAGMENT_SHADER,fs));
+  gl.linkProgram(prog);gl.useProgram(prog);
+
+  const buf=gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  const pLoc=gl.getAttribLocation(prog,'p');
+  gl.enableVertexAttribArray(pLoc);
+  gl.vertexAttribPointer(pLoc,2,gl.FLOAT,false,0,0);
+
+  const uTime=gl.getUniformLocation(prog,'u_time');
+  const uRes=gl.getUniformLocation(prog,'u_res');
+  const uMouse=gl.getUniformLocation(prog,'u_mouse');
+  const uScroll=gl.getUniformLocation(prog,'u_scroll');
+
+  function render(t){
+    gl.uniform1f(uTime,t*0.001);
+    gl.uniform2f(uRes,W,H);
+    gl.uniform2f(uMouse,mouse.x,mouse.y);
+    gl.uniform1f(uScroll,scroll);
+    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+    requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
+})();
+
+/* ===== NAV SCROLL ===== */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+
+/* ===== HAMBURGER ===== */
+const hb=document.getElementById('hamburger'),nl=document.getElementById('navLinks');
+hb.addEventListener('click',()=>{hb.classList.toggle('active');nl.classList.toggle('open')});
+nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{hb.classList.remove('active');nl.classList.remove('open')}));
+
+/* ===== SCROLL REVEAL ===== */
+const rvs=document.querySelectorAll('.rv');
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+rvs.forEach(el=>ro.observe(el));
+
+/* ===== STAT COUNTER ===== */
+const stats=document.querySelectorAll('.stat-val[data-count]');
+const so=new IntersectionObserver(es=>{es.forEach(e=>{
+  if(e.isIntersecting){
+    const t=+e.target.dataset.count;let s=null;
+    const step=ts=>{if(!s)s=ts;const p=Math.min((ts-s)/2000,1);
+      e.target.textContent=Math.floor(p*t);
+      if(p<1)requestAnimationFrame(step);else e.target.textContent=t+'+'};
+    requestAnimationFrame(step);so.unobserve(e.target)}
+})},{threshold:0.5});
+stats.forEach(el=>so.observe(el));
+</script>
+</body>
+</html>
